@@ -21,7 +21,7 @@ public class Session extends Thread{
 		while (true) {
 
 			try {
-				if ()
+				//if ()
 				
 				message = buff.readLine();
 				mailbox.write(user, message);
