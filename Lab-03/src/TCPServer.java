@@ -48,11 +48,10 @@ public class TCPServer extends Thread {
 				ps.println("Your name is " + user.getName());
 				ps.flush();
 
-				String message = buff.readLine();
+				Mailbox mailbox = new Mailbox();
 				
-				System.out.println(user.getName() + " said: " + message);
-				//ps.println(message);
-				ps.flush();
+				Session session = new Session(ps, buff, mailbox, user);
+				session.start();
 
 			} catch (Exception e) {
 				e.printStackTrace();

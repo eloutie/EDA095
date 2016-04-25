@@ -9,7 +9,7 @@ public class Session extends Thread{
 	private User user;
 	private String message;
 
-	public Session(PrintWriter ps, BufferedReader buff, Mailbox mailbox, User user) {
+	public Session(PrintWriter ps, BufferedReader buff, Mailbox mailbox, User user){
 		this.ps = ps;
 		this.buff = buff;
 		this.mailbox = mailbox;
@@ -21,7 +21,12 @@ public class Session extends Thread{
 		while (true) {
 
 			try {
+				message = buff.readLine();
+				mailbox.write(user, message);
+				String mess = mailbox.getMessage();
+				System.out.println(user.getName() + " said: " + mess);
 				
+				ps.flush();
 			} catch (Exception e) {
 				
 			}
