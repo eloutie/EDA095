@@ -18,7 +18,7 @@ public class EchoServerTCP2 {
 		System.out.println("Let's start.");
 		ServerSocket server = null;
 		while (true) {
-			System.out.println("Waiting for clients on port 3000");
+			System.out.println("Waiting for clients on port 30000");
 
 			try {
 				server = new ServerSocket(30000);
@@ -35,7 +35,7 @@ public class EchoServerTCP2 {
 				BufferedReader buff = new BufferedReader(new InputStreamReader(is));
 				PrintWriter ps = new PrintWriter(os);
 
-				System.out.println("Välj användarnamn: ");
+				ps.println("Välj användarnamn: ");
 				Scanner scan = new Scanner(System.in);
 				String username = buff.readLine();
 				User user = new User(username);
