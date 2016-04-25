@@ -1,12 +1,15 @@
 public class Mailbox {
 	
+	private User user;
 	private String message;
 	
 	public Mailbox() {
+		this.user = null;
 		message = "";
 	}
 	
 	public synchronized void write(User user, String message) throws InterruptedException {
+		this.user = user;
 		while(!message.equals("")) {
 			wait();
 		}
@@ -23,6 +26,7 @@ public class Mailbox {
 		
 		String temp = message;
 		message = "";
+		user = null;
 		notifyAll();
 		return temp;
 	}

@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TCPServer /**extends Thread*/ {
+public class TCPServer extends Thread {
 
 	private ServerSocket server;
 	private Scanner scan;
@@ -23,43 +23,41 @@ public class TCPServer /**extends Thread*/ {
 	}
 
 	public void run() {
-
+		System.out.println("Trying to connect to " + server.getLocalPort() + "...");
+		
 		while (true) {
-			System.out.println("Trying to connect to " + server.getLocalPort() + "...");
-			
+		
 			try {
 				Socket connectionSocket = server.accept();
 				InetAddress client = connectionSocket.getInetAddress();
-				
+
 				InputStream is = connectionSocket.getInputStream();
 				OutputStream os = connectionSocket.getOutputStream();
-				
+
 				BufferedReader buff = new BufferedReader(new InputStreamReader(is));
 				PrintWriter ps = new PrintWriter(os);
-				
-				System.out.println("Just connected to InetAddress " + client);
+
+				System.out.println("Someone new entered our chatroom! " + client.getHostName());
 				ps.println("Welcome to our chat");
-				
+
 				ps.println("Pick a nickname: ");
 				ps.flush();
+
 				User user = new User(client, buff.readLine());
-				
+
 				ps.println("Your name is " + user.getName());
-				
 				ps.flush();
+
+				String message = buff.readLine();
 				
-				while (true) {
-					String message = buff.readLine();
-					System.out.println(user.getName() + " said: " + message);
-					ps.println(message);
-					ps.flush();
-				}
-				
-				
+				System.out.println(user.getName() + " said: " + message);
+				//ps.println(message);
+				ps.flush();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		}	
 	}
 }

@@ -1,13 +1,13 @@
-import java.net.InetAddress;
+import java.net.Socket;
 
 public class User {
 	
 	private String username;
 	private boolean active;
-	private InetAddress client;
+	private Socket socket;
 	
-	public User(InetAddress client, String username) {
-		this.client = client;
+	public User(Socket socket, String username) {
+		this.socket = socket;
 		this.username = username;
 		this.active = false;
 	}
@@ -29,4 +29,7 @@ public class User {
 		return active;
 	}
 
+	public Socket getSocket() {
+		return socket;
+	}
 }

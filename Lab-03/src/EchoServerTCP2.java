@@ -38,13 +38,13 @@ public class EchoServerTCP2 {
 				ps.println("Välj användarnamn: ");
 				Scanner scan = new Scanner(System.in);
 				String username = buff.readLine();
-				User user = new User(username);
-				users.add(user);
-				System.out.println("User " + user.getName() + " joined the chatt");
+			//	User user = new User(username);
+				//users.add(user);
+				//System.out.println("User " + user.getName() + " joined the chatt");
 
-				ThreadTCP session = new ThreadTCP(buff, ps, user);
+				//ThreadTCP session = new ThreadTCP(buff, ps, user);
 
-				session.start();
+				//session.start();
 
 			} catch (Exception e) {
 				e.printStackTrace();

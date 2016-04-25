@@ -8,7 +8,7 @@ public class Main {
 		//scan.close();
 		try {
 			TCPServer t = new TCPServer();
-			t.run();
+			t.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
