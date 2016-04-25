@@ -23,16 +23,16 @@ public class TCPServer extends Thread {
 	}
 
 	public void run() {
-		System.out.println("Trying to connect to " + server.getLocalPort() + "...");
+		System.out.println("Waiting for clients on port 30000.");
 		
 		while (true) {
 		
 			try {
-				Socket connectionSocket = server.accept();
-				InetAddress client = connectionSocket.getInetAddress();
+				Socket socket = server.accept();
+				InetAddress client = socket.getInetAddress();
 
-				InputStream is = connectionSocket.getInputStream();
-				OutputStream os = connectionSocket.getOutputStream();
+				InputStream is = socket.getInputStream();
+				OutputStream os = socket.getOutputStream();
 
 				BufferedReader buff = new BufferedReader(new InputStreamReader(is));
 				PrintWriter ps = new PrintWriter(os);
@@ -43,7 +43,7 @@ public class TCPServer extends Thread {
 				ps.println("Pick a nickname: ");
 				ps.flush();
 
-				User user = new User(client, buff.readLine());
+				User user = new User(socket, buff.readLine());
 
 				ps.println("Your name is " + user.getName());
 				ps.flush();
