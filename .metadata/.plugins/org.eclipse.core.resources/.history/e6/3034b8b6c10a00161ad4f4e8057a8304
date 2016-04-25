@@ -1,0 +1,10 @@
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
+public class Session {
+	
+	private PrintWriter ps;
+	private BufferedReader buff;
+	private Mailbox mailbox;
+	private User use;
+}

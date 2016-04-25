@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
+public class Session extends Thread{
+
+	private PrintWriter ps;
+	private BufferedReader buff;
+	private Mailbox mailbox;
+	private User user;
+	private String message;
+
+	public Session(PrintWriter ps, BufferedReader buff, Mailbox mailbox, User user) {
+		this.ps = ps;
+		this.buff = buff;
+		this.mailbox = mailbox;
+		this.user = user;
+		message = "";
+	}
+
+	public void run() {
+		while (true) {
+
+			try {
+				String message = buff.readLine();
+				mailbox.write(user, message);
+
+				System.out.println(user.getName() + " said: " + mailbox.getMessage());
+				ps.write(user.getName() + " said: " + mailbox.getMessage());
+				ps.flush();
+			} catch (Exception e) {
+				
+			}
+		}
+	}
+}

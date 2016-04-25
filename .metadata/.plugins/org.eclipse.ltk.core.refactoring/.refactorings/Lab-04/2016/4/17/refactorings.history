@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;lab.WebCrawler&apos; to &apos;Spider&apos;&#x0A;- Original project: &apos;Lab-04&apos;&#x0A;- Original element: &apos;lab.WebCrawler&apos;&#x0A;- Renamed element: &apos;lab.Spider&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WebCrawler&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;lab{WebCrawler.java[WebCrawler" matchStrategy="1" name="Spider" qualified="false" references="true" similarDeclarations="false" stamp="1461579068925" textual="false" version="1.0"/>
+</session>
