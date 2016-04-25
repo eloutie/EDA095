@@ -1,56 +1,59 @@
-package lab;
+package inspiration;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.lang.model.util.Elements;
-import javax.swing.text.Document;
-import javax.swing.text.html.parser.Element;
-
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class SpiderLeg {
-	
-	private List<String> links = new LinkedList<String>(); // Just a list of URLs
-	private Document htmlDocument; // This is our web page, or in other words, our document
-	
-	
-	// Give it a URL and it makes an HTTP request for a web page
-	public void crawl(String url)
-    {
-        try
-        {
+    // We'll use a fake USER_AGENT so the web server thinks the robot is a normal web browser.
+    private static final String USER_AGENT =
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
+    private List<String> links = new LinkedList<String>();
+    private Document htmlDocument;
+
+
+    /**
+     * This performs all the work. It makes an HTTP request, checks the response, and then gathers
+     * up all the links on the page. Perform a searchForWord after the successful crawl
+     * 
+     * @param url
+     *            - The URL to visit
+     * @return whether or not the crawl was successful
+     */
+    public boolean crawl(String url) {
+        try {
             Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
             Document htmlDocument = connection.get();
             this.htmlDocument = htmlDocument;
-
-            System.out.println("Received web page at " + url);
-
+            if(connection.response().statusCode() == 200) // 200 is the HTTP OK status code
+                                                          // indicating that everything is great.
+            {
+                System.out.println("\n**Visiting** Received web page at " + url);
+            }
+            if(!connection.response().contentType().contains("text/html")) {
+                System.out.println("**Failure** Retrieved something other than HTML");
+                return false;
+            }
             Elements linksOnPage = htmlDocument.select("a[href]");
             System.out.println("Found (" + linksOnPage.size() + ") links");
-            for(Element link : linksOnPage)
-            {
+            for(Element link : linksOnPage) {
                 this.links.add(link.absUrl("href"));
             }
-        }
-        catch(IOException ioe)
-        {
+            return true;
+        } catch(IOException ioe) {
             // We were not successful in our HTTP request
-            System.out.println("Error in out HTTP request " + ioe);
+            return false;
         }
     }
-	
-	// Tries to find a word on the page
-	public boolean searchForWord(String word) {
-		return true;
-	}
-	
-	// Returns a list of all the URLs on the page
-	public List<String> getLinks() {
-		List<String> l = new ArrayList<String>();
-		return l;
-	}
+
+    public List<String> getLinks() {
+        return this.links;
+    }
+
 }

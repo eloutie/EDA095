@@ -1,5 +1,0 @@
-INDEX VERSION 1.127+/Users/Hubert/Desktop/EDA095/.metadata/.plugins/org.eclipse.jdt.core
-655960732.index
-3112025919.index
-1467211283.index
-3464138665.index

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename local variable &apos;connectionSocket&apos; in &apos;TCPServer.run()&apos; to &apos;socket&apos;&#x0A;- Original project: &apos;Lab-03&apos;&#x0A;- Original element: &apos;TCPServer.run().connectionSocket&apos;&#x0A;- Renamed element: &apos;connectionSocket&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;connectionSocket&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{TCPServer.java[TCPServer~run@connectionSocket!731!772!738!753!QSocket;!0!false" name="socket" references="true" stamp="1461574715848" version="1.0"/>
-</session>
