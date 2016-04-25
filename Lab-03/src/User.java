@@ -1,10 +1,11 @@
+import java.net.InetAddress;
 
 public class User {
 	
 	private String username;
 	private boolean active;
 	
-	public User(String username) {
+	public User(InetAddress client, String username) {
 		this.username = username;
 		this.active = false;
 	}

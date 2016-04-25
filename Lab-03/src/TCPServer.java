@@ -3,21 +3,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TCPServer /**extends Thread*/ {
 
 	private ServerSocket server;
 	private Scanner scan;
+	private ArrayList<User> users;
 
 	public TCPServer() throws IOException {
 		this.server = new ServerSocket(30000);
 		scan = new Scanner(System.in);
+		users = new ArrayList<User>();
 	}
 
 	public void run() {
@@ -36,10 +38,19 @@ public class TCPServer /**extends Thread*/ {
 				PrintWriter ps = new PrintWriter(os);
 				
 				System.out.println("Just connected to InetAddress " + client);
+				ps.println("Welcome to our chat");
+				
+				ps.println("Pick a nickname: ");
+				ps.flush();
+				User user = new User(buff.readLine());
+				
+				ps.println("Your name is " + user.getName());
+				System.out.println("Nu är vi förbi");
+				ps.flush();
 				
 				while (true) {
 					String message = buff.readLine();
-					System.out.println("client said: " + message);
+					System.out.println(user.getName() + " said: " + message);
 					ps.println(message);
 					ps.flush();
 				}
