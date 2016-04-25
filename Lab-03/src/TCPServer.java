@@ -37,7 +37,7 @@ public class TCPServer extends Thread {
 				BufferedReader buff = new BufferedReader(new InputStreamReader(is));
 				PrintWriter ps = new PrintWriter(os);
 
-				System.out.println("Someone new entered our chatroom! " + client.getHostName());
+				System.out.println("Someone new entered our chatroom! They are from " + client.getHostName());
 				ps.println("Welcome to our chat");
 
 				ps.println("Pick a nickname: ");
@@ -51,7 +51,8 @@ public class TCPServer extends Thread {
 				Mailbox mailbox = new Mailbox();
 				
 				Session session = new Session(ps, buff, mailbox, user);
-				session.start();
+				Thread t = new Thread(session);
+				t.start();
 
 			} catch (Exception e) {
 				e.printStackTrace();

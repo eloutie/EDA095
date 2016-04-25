@@ -21,6 +21,8 @@ public class Session extends Thread{
 		while (true) {
 
 			try {
+				if ()
+				
 				message = buff.readLine();
 				mailbox.write(user, message);
 				String mess = mailbox.getMessage();
