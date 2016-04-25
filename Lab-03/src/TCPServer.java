@@ -42,10 +42,10 @@ public class TCPServer /**extends Thread*/ {
 				
 				ps.println("Pick a nickname: ");
 				ps.flush();
-				User user = new User(buff.readLine());
+				User user = new User(client, buff.readLine());
 				
 				ps.println("Your name is " + user.getName());
-				System.out.println("Nu är vi förbi");
+				
 				ps.flush();
 				
 				while (true) {

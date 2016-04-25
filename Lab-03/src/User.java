@@ -4,8 +4,10 @@ public class User {
 	
 	private String username;
 	private boolean active;
+	private InetAddress client;
 	
 	public User(InetAddress client, String username) {
+		this.client = client;
 		this.username = username;
 		this.active = false;
 	}
